@@ -15,15 +15,15 @@ char shift_char(char c, int shift) {
     char base;
     int length;
 
-    /* Number of char families accepted by the system */
-    int num_families = sizeof(CHAR_FAMILIES)/sizeof(struct char_family);
+    /* Number of char intervals accepted by the system */
+    int num_intervals = sizeof(CHAR_INTERVALS)/sizeof(struct char_interval);
 
-    for (int i = 0; i < num_families; i++) {
-        if (is_from_family(c, CHAR_FAMILIES[i])) {
-            base = CHAR_FAMILIES[i].begin;
+    for (int i = 0; i < num_intervals; i++) {
+        if (is_from_interval(c, CHAR_INTERVALS[i])) {
+            base = CHAR_INTERVALS[i].begin;
 
             /* Length must include the end character. Hence, sum 1. */
-            length = CHAR_FAMILIES[i].end - CHAR_FAMILIES[i].begin + 1;
+            length = CHAR_INTERVALS[i].end - CHAR_INTERVALS[i].begin + 1;
             return shift_generic_char(c, shift, base, length);
         }
     }
@@ -31,8 +31,8 @@ char shift_char(char c, int shift) {
     return ' ';
 }
 
-int is_from_family(char c, struct char_family family) {
-    return (c >= family.begin && c <= family.end);
+int is_from_interval(char c, struct char_interval interval) {
+    return (c >= interval.begin && c <= interval.end);
 }
 
 char shift_generic_char(char c, int shift, char base, char length) {

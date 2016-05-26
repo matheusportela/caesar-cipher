@@ -19,17 +19,17 @@
 #include <string.h>
 
 /*
- * Character family is an interval between two characters where a character can
- * be shifted.
+ * Character interval is an interval between two characters where a character
+ * can be shifted.
  */
-struct char_family {
+struct char_interval {
     char begin;
     char end;
 };
 
-/* All possible character families.
+/* All possible character interval.
  */
-static struct char_family CHAR_FAMILIES[] = {
+static struct char_interval CHAR_INTERVALS[] = {
     { .begin = 'a', .end = 'z' },
     { .begin = 'A', .end = 'Z' },
     { .begin = '0', .end = '9' }
@@ -47,9 +47,9 @@ void caesar(char* dst, char* src, int shift);
 char shift_char(char c, int shift);
 
 /* Identifies whether a given character `c` belongs to a given character
- * family.
+ * interval.
  */
-int is_from_family(char c, struct char_family family);
+int is_from_interval(char c, struct char_interval interval);
 
 /* Shift a single character `c` by `shift` positions with rotation to avoid
  * out-of-bounds characters. `base` defines the first possible character and
