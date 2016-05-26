@@ -12,8 +12,8 @@ void test_caesar(char* input, char* expected, int shift) {
 
     if (DEBUG) {
         printf("-------------------\n");
-        printf("Input: %s\n", input);
         printf("Shift: %d\n", shift);
+        printf("Input: %s\n", input);
         printf("Expected: %s\n", expected);
         printf("Result: %s\n", result);
         printf("-------------------\n");
@@ -33,7 +33,7 @@ int main() {
     test_caesar("", "", 1);
     test_caesar("bcdefg", "abcdef", -1);
     test_caesar("cdefgh", "abcdef", -2);
-    test_caesar("zabcde", "abcdef", -1);
+    test_caesar("abcdef", "zabcde", -1);
     printf("Caesar cipher passed all tests\n");
     return(0);
 }

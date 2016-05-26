@@ -16,12 +16,15 @@ char shift_char(char c, int shift) {
     int pos = c - 'a';
 
     /* Number of shifts for the current character */
-    int delta  = pos + shift;
+    int delta  = (pos + shift) % 26;
 
+    /* When character is at the beginning of the alphabet, such as 'a' and shift
+     * is negative, delta becomes a negative number which generates characters
+     * out-of-bounds instead of rotating to the end of the alphabet. This must
+     * be corrected.
+     */
     if (delta < 0)
         delta += 26;
-    else
-        delta %= 26;
 
     return('a' + delta);
 }
