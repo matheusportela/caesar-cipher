@@ -23,17 +23,26 @@ void test_caesar(char* input, char* expected, int shift) {
 }
 
 int main() {
+    /* Lowercase with positive shifts */
     test_caesar("abcdef", "abcdef", 0);
     test_caesar("abcdef", "bcdefg", 1);
     test_caesar("abcdef", "cdefgh", 2);
     test_caesar("abcdef", "abcdef", 26);
     test_caesar("abcdef", "bcdefg", 27);
     test_caesar("vwxyz", "wxyza", 1);
+
+    /* Empty inputs */
     test_caesar("", "", 0);
     test_caesar("", "", 1);
+
+    /* Lowercase with negative shifts */
     test_caesar("bcdefg", "abcdef", -1);
     test_caesar("cdefgh", "abcdef", -2);
     test_caesar("abcdef", "zabcde", -1);
+
+    /* Uppercase with positive shifts */
+    test_caesar("ABCDEF", "ABCDEF", 0);
+
     printf("Caesar cipher passed all tests\n");
     return(0);
 }
