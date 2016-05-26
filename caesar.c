@@ -17,6 +17,8 @@ char shift_char(char c, int shift) {
             return shift_char_lower(c, shift);
         case UPPER:
             return shift_char_upper(c, shift);
+        case NUM:
+            return shift_char_num(c, shift);
         default:
             return ' ';
     }
@@ -27,23 +29,29 @@ enum char_type identify_char(char c) {
         return LOWER;
     else if (c >= 'A' && c <= 'Z')
         return UPPER;
+    else if (c >= '0' && c <= '9')
+        return NUM;
     return UNDEFINED;
 }
 
 char shift_char_lower(char c, int shift) {
-    return shift_char_with_base(c, shift, 'a');
+    return shift_generic_char(c, shift, 'a', 26);
 }
 
 char shift_char_upper(char c, int shift) {
-    return shift_char_with_base(c, shift, 'A');
+    return shift_generic_char(c, shift, 'A', 26);
 }
 
-char shift_char_with_base(char c, int shift, char base) {
+char shift_char_num(char c, int shift) {
+    return shift_generic_char(c, shift, '0', 10);
+}
+
+char shift_generic_char(char c, int shift, char base, char length) {
     /* Character index starting from 'a' */
     int pos = c - base;
 
     /* Number of shifts for the current character */
-    int delta  = (pos + shift) % 26;
+    int delta  = (pos + shift) % length;
 
     /* When character is at the beginning of the alphabet, such as 'a' and shift
      * is negative, delta becomes a negative number which generates characters
@@ -51,7 +59,7 @@ char shift_char_with_base(char c, int shift, char base) {
      * be corrected.
      */
     if (delta < 0)
-        delta += 26;
+        delta += length;
 
     return(base + delta);
 }

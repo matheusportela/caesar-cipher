@@ -53,6 +53,19 @@ int main() {
     test_caesar("CDEFGH", "ABCDEF", -2);
     test_caesar("ABCDEF", "ZABCDE", -1);
 
+    /* Numeric with positive shifts */
+    test_caesar("012345", "012345", 0);
+    test_caesar("012345", "123456", 1);
+    test_caesar("012345", "234567", 2);
+    test_caesar("012345", "012345", 10);
+    test_caesar("012345", "123456", 11);
+    test_caesar("67890", "78901", 1);
+
+    /* Numeric with negative shifts */
+    test_caesar("123456", "012345", -1);
+    test_caesar("234567", "012345", -2);
+    test_caesar("012345", "901234", -1);
+
     printf("Caesar cipher passed all tests\n");
     return(0);
 }

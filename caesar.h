@@ -18,7 +18,7 @@
 
 #include <string.h>
 
-enum char_type { LOWER, UPPER, UNDEFINED };
+enum char_type { LOWER, UPPER, NUM, UNDEFINED };
 
 /* Apply Caesar cipher algorithm to `src`, a null-terminated string, storing the
  * output in `dst`, another previously allocated null-terminated string,
@@ -43,9 +43,14 @@ char shift_char_lower(char c, int shift);
  */
 char shift_char_upper(char c, int shift);
 
-/* Shift a single character `c` by `shift` positions with rotation to avoid
- * out-of-bounds characters. `base` defines the first possible character.
+/* Shifts a numeric character.
  */
-char shift_char_with_base(char c, int shift, char base);
+char shift_char_num(char c, int shift);
+
+/* Shift a single character `c` by `shift` positions with rotation to avoid
+ * out-of-bounds characters. `base` defines the first possible character and
+ * `len` the number of the characters for the given type.
+ */
+char shift_generic_char(char c, int shift, char base, char length);
 
 #endif /* CAESAR_H_ */
