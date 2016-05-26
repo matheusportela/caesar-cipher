@@ -18,7 +18,22 @@
 
 #include <string.h>
 
-enum char_type { LOWER, UPPER, NUM, UNDEFINED };
+/*
+ * Character family is an interval between two characters where a character can
+ * be shifted.
+ */
+struct char_family {
+    char begin;
+    char end;
+};
+
+/* All possible character families.
+ */
+static struct char_family CHAR_FAMILIES[] = {
+    { .begin = 'a', .end = 'z' },
+    { .begin = 'A', .end = 'Z' },
+    { .begin = '0', .end = '9' }
+};
 
 /* Apply Caesar cipher algorithm to `src`, a null-terminated string, storing the
  * output in `dst`, another previously allocated null-terminated string,
@@ -31,21 +46,10 @@ void caesar(char* dst, char* src, int shift);
  */
 char shift_char(char c, int shift);
 
-/* Identify the type of the given character, such as lowercase and uppercase.
+/* Identifies whether a given character `c` belongs to a given character
+ * family.
  */
-enum char_type identify_char(char c);
-
-/* Shifts a lowercase character.
- */
-char shift_char_lower(char c, int shift);
-
-/* Shifts an uppercase character.
- */
-char shift_char_upper(char c, int shift);
-
-/* Shifts a numeric character.
- */
-char shift_char_num(char c, int shift);
+int is_from_family(char c, struct char_family family);
 
 /* Shift a single character `c` by `shift` positions with rotation to avoid
  * out-of-bounds characters. `base` defines the first possible character and

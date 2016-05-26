@@ -12,38 +12,27 @@ void caesar(char* dst, char* src, int shift) {
 }
 
 char shift_char(char c, int shift) {
-    switch (identify_char(c)) {
-        case LOWER:
-            return shift_char_lower(c, shift);
-        case UPPER:
-            return shift_char_upper(c, shift);
-        case NUM:
-            return shift_char_num(c, shift);
-        default:
-            return ' ';
+    char base;
+    int length;
+
+    /* Number of char families accepted by the system */
+    int num_families = sizeof(CHAR_FAMILIES)/sizeof(struct char_family);
+
+    for (int i = 0; i < num_families; i++) {
+        if (is_from_family(c, CHAR_FAMILIES[i])) {
+            base = CHAR_FAMILIES[i].begin;
+
+            /* Length must include the end character. Hence, sum 1. */
+            length = CHAR_FAMILIES[i].end - CHAR_FAMILIES[i].begin + 1;
+            return shift_generic_char(c, shift, base, length);
+        }
     }
+
+    return ' ';
 }
 
-enum char_type identify_char(char c) {
-    if (c >= 'a' && c <= 'z')
-        return LOWER;
-    else if (c >= 'A' && c <= 'Z')
-        return UPPER;
-    else if (c >= '0' && c <= '9')
-        return NUM;
-    return UNDEFINED;
-}
-
-char shift_char_lower(char c, int shift) {
-    return shift_generic_char(c, shift, 'a', 26);
-}
-
-char shift_char_upper(char c, int shift) {
-    return shift_generic_char(c, shift, 'A', 26);
-}
-
-char shift_char_num(char c, int shift) {
-    return shift_generic_char(c, shift, '0', 10);
+int is_from_family(char c, struct char_family family) {
+    return (c >= family.begin && c <= family.end);
 }
 
 char shift_generic_char(char c, int shift, char base, char length) {
