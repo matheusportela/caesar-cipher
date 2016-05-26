@@ -12,8 +12,35 @@ void caesar(char* dst, char* src, int shift) {
 }
 
 char shift_char(char c, int shift) {
+    switch (identify_char(c)) {
+        case LOWER:
+            return shift_char_lower(c, shift);
+        case UPPER:
+            return shift_char_upper(c, shift);
+        default:
+            return ' ';
+    }
+}
+
+enum char_type identify_char(char c) {
+    if (c >= 'a' && c <= 'z')
+        return LOWER;
+    else if (c >= 'A' && c <= 'Z')
+        return UPPER;
+    return UNDEFINED;
+}
+
+char shift_char_lower(char c, int shift) {
+    return shift_char_with_base(c, shift, 'a');
+}
+
+char shift_char_upper(char c, int shift) {
+    return shift_char_with_base(c, shift, 'A');
+}
+
+char shift_char_with_base(char c, int shift, char base) {
     /* Character index starting from 'a' */
-    int pos = c - 'a';
+    int pos = c - base;
 
     /* Number of shifts for the current character */
     int delta  = (pos + shift) % 26;
@@ -26,5 +53,5 @@ char shift_char(char c, int shift) {
     if (delta < 0)
         delta += 26;
 
-    return('a' + delta);
+    return(base + delta);
 }
