@@ -4,15 +4,17 @@ CFLAGS = -ansi -Wall -g
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 HEAD = $(SRC:.c=.h)
-EXEC = test_caesar
 
 INC = -I.
 
 .PHONY: all
-all: $(SRC) $(EXEC)
+all: test_caesar
 
-# Create executable file
-$(EXEC): $(OBJ)
+# Create executable files
+caesar-cipher: caesar-cipher.o caesar.o
+	$(CC) -o $@ $^
+
+test_caesar: test_caesar.o caesar.o
 	$(CC) -o $@ $^
 
 # Create object files
@@ -31,3 +33,5 @@ print:
 .PHONY: clean
 clean:
 	-rm -f $(EXEC) *.o
+	-rm -f caesar-cipher
+	-rm -f test_caesar
