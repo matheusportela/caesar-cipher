@@ -18,8 +18,7 @@
 
 #include <string.h>
 
-/*
- * Character interval is an interval between two characters where a character
+/* Character interval is an interval between two characters where a character
  * can be shifted.
  */
 struct char_interval {
@@ -27,12 +26,9 @@ struct char_interval {
     char end;
 };
 
-/* All possible character interval.
- */
+/* All possible character intervals, such as printable ASCII characters */
 static struct char_interval CHAR_INTERVALS[] = {
-    { .begin = 'a', .end = 'z' },
-    { .begin = 'A', .end = 'Z' },
-    { .begin = '0', .end = '9' }
+    { .begin = ' ', .end = '~' }
 };
 
 /* Apply Caesar cipher algorithm to `src`, a null-terminated string, storing the
