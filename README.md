@@ -32,7 +32,7 @@ $ ./caesar_cipher -5 yjxy
 test
 $ ./caesar_cipher 30 test
 3$23
-$ ./caesar_cipher -30 3$23
+$ ./caesar_cipher -30 "3\$23"
 test
 ```
 
