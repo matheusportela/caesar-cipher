@@ -1,7 +1,9 @@
 #include "caesar.h"
 
 void caesar(char* dst, char* src, int shift) {
-    for (int i = 0; i < strlen(src); i++) {
+    int i;
+    
+    for (i = 0; i < strlen(src); i++) {
         dst[i] = shift_char(src[i], shift);
     }
 
