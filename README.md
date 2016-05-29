@@ -28,6 +28,8 @@ Now, simply execute it giving a shift integer and a text to encode:
 ```bash
 $ ./caesar_cipher 5 test
 yjxy
+$ ./caesar_cipher -5 yjxy
+test
 $ ./caesar_cipher 30 test
 3$23
 $ ./caesar_cipher -30 3$23
@@ -44,6 +46,7 @@ Three arguments are required:
 
 Let's create an example program. Copy and paste this piece of code to `my_caesar.c`.
 ```c
+#include <stdio.h>
 #include "caesar.h"
 
 int main() {
@@ -59,7 +62,8 @@ int main() {
 
 Now you can compile the program and see it working.
 ```bash
-$ gcc -I. my_caesar.c -o my_caesar
+$ gcc -c my_caesar.c caesar.c
+$ gcc -o my_caesar my_caesar.o caesar.o
 $ ./my_caesar
 yjxy
 ```
@@ -75,6 +79,8 @@ From now on, `pycaesar` is available for your Python modules:
 >>> import pycaesar
 >>> pycaesar.caesar('test', 5)
 'yjxy'
+>>> pycaesar.caesar('yjxy', -5)
+'test'
 >>> pycaesar.caesar('test', 30)
 '3$23'
 >>> pycaesar.caesar('3$23', -30)
