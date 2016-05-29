@@ -8,10 +8,10 @@ HEAD = $(SRC:.c=.h)
 INC = -I.
 
 .PHONY: all
-all: test_caesar
+all: caesar_cipher test_caesar
 
 # Create executable files
-caesar-cipher: caesar-cipher.o caesar.o
+caesar_cipher: caesar_cipher.o caesar.o
 	$(CC) -o $@ $^
 
 test_caesar: test_caesar.o caesar.o
@@ -33,5 +33,5 @@ print:
 .PHONY: clean
 clean:
 	-rm -f $(EXEC) *.o
-	-rm -f caesar-cipher
+	-rm -f caesar_cipher
 	-rm -f test_caesar
