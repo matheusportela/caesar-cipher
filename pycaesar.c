@@ -1,3 +1,8 @@
+/**
+ * Python extension in C for pycaesar module.
+ * Reference: http://dan.iel.fm/posts/python-c-extensions/
+ */
+
 #include <Python.h>
 #include <stdlib.h>
 #include "caesar.h"
