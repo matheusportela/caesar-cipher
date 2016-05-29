@@ -7,7 +7,7 @@ Quoting the [Wikipedia's article on Caesar cipher](https://en.wikipedia.org/wiki
 
 > In cryptography, a Caesar cipher, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in his private correspondence.
 
-## Why implementing it?
+## Why did I implement it?
 
 If you do a [quick search for "Caesar cipher" in GitHub](https://github.com/search?utf8=%E2%9C%93&q=caesar+cipher), you'll find hundreds of repositories implementing this algorithm in at least 10 programming languages. Therefore, why take the effort to implement it one more time?
 
